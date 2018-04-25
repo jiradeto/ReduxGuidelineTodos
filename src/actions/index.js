@@ -8,6 +8,11 @@ export const addTodo = text => ({
   text
 });
 
+export const toggleTodo = id => ({
+  type: types.TOGGLE_ITEM,
+  id
+});
+
 export const setFilter = filter => ({
   type: types.SET_VISIBILITY,
   filter

@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, View, Text, Button, FlatList } from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Text,
+  Button,
+  FlatList
+} from 'react-native';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions';
 
@@ -7,16 +14,28 @@ export default props => {
   const { text, completed, id } = props.todo;
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => props.onPress(id)}>
       <View
         style={{
+          flexDirection: 'row',
           padding: 20,
           borderBottomColor: '#d4d4d4',
           borderBottomWidth: 1
         }}
       >
-        <Text> {text} </Text>
+        <Text style={completed ? styles.textLine : styles.text}> {text} </Text>
       </View>
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    textDecorationLine: 'none',
+    color: 'black'
+  },
+  textLine: {
+    color: '#c4c4c4',
+    textDecorationLine: 'line-through'
+  }
+});

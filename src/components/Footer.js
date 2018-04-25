@@ -2,39 +2,51 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import * as types from '../actions/types';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions';
+import { addTodo, setFilter } from '../actions';
 
 class Footer extends Component {
   onPressFilter(type) {
-    console.log('onPressFilter =>', type);
+    this.props.dispatch(setFilter(type));
   }
+
+  renderButton({ filter, text }) {
+    return (
+      <Button
+        disabled={this.props.filter === filter}
+        title={text}
+        onPress={() => this.onPressFilter(filter)}
+      />
+    );
+  }
+
   render() {
     return (
       <View style={{ flexDirection: 'row' }}>
         <View style={{ flex: 1 }}>
-          <Button
-            disabled
-            title="All"
-            onPress={() => this.onPressFilter(types.FILTER_TYPE.ALL)}
-          />
+          {this.renderButton({
+            filter: types.FILTER_TYPE.ALL,
+            text: 'All'
+          })}
         </View>
         <View style={{ flex: 1 }}>
-          <Button
-            style={{ flex: 1 }}
-            title="Active"
-            onPress={() => this.onPressFilter(types.FILTER_TYPE.ACTIVE)}
-          />
+          {this.renderButton({
+            filter: types.FILTER_TYPE.ACTIVE,
+            text: 'Active'
+          })}
         </View>
         <View style={{ flex: 1 }}>
-          <Button
-            style={{ flex: 1 }}
-            title="Complete"
-            onPress={() => this.onPressFilter(types.FILTER_TYPE.COMPLETE)}
-          />
+          {this.renderButton({
+            filter: types.FILTER_TYPE.COMPLETE,
+            text: 'Complete'
+          })}
         </View>
       </View>
     );
   }
 }
-
-export default connect()(Footer);
+const select = store => {
+  return {
+    filter: store.filter
+  };
+};
+export default connect(select)(Footer);

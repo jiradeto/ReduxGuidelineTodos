@@ -12,6 +12,11 @@ export default (state = INITIAL_STATE, action) => {
           completed: false
         }
       ];
+    case types.TOGGLE_ITEM:
+      return state.map(
+        todo =>
+          todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
+      );
     default:
       return state;
   }
