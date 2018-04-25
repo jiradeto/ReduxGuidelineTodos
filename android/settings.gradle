@@ -1,0 +1,3 @@
+rootProject.name = 'ReduxGuidelineTodo'
+
+include ':app'
