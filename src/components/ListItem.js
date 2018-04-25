@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   textLine: {
-    color: '#c4c4c4',
+    color: 'green',
     textDecorationLine: 'line-through'
   }
 });
