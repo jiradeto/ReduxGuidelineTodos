@@ -23,6 +23,9 @@ export default props => {
           borderBottomWidth: 1
         }}
       >
+        <TouchableOpacity
+          style={completed ? styles.circleGreen : styles.circleGrey}
+        />
         <Text style={completed ? styles.textLine : styles.text}> {text} </Text>
       </View>
     </TouchableOpacity>
@@ -30,11 +33,25 @@ export default props => {
 };
 
 const styles = StyleSheet.create({
+  circleGreen: {
+    width: 20,
+    height: 20,
+    borderRadius: 20,
+    backgroundColor: 'green'
+  },
+  circleGrey: {
+    width: 20,
+    height: 20,
+    borderRadius: 20,
+    backgroundColor: '#d4d4d4'
+  },
   text: {
+    marginLeft: 10,
     textDecorationLine: 'none',
     color: 'black'
   },
   textLine: {
+    marginLeft: 10,
     color: 'green',
     textDecorationLine: 'line-through'
   }
